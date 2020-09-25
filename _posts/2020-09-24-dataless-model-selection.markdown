@@ -39,6 +39,6 @@ this I mean that for some representation $$r$$, there does not exist any $$\hat{
 In general, we often have dictionaries that are over-complete, i.e. $$k > d$$. In such cases we cannot achieve $$M = 0$$
 and instead may try to define a dictionary $$D$$ for which $$M$$ is minimal. This can be interpreted as a way of ensuring
 that the dictionary contains as little redundancy as possible. Another way to think about this is that the atoms
-(i.e. columns of $$D$$) are as evenly distributed as possible on the surface of a unique hypersphere in $$\mathbb{R}^d$$.
+(i.e. columns of $$D$$) are as evenly distributed as possible on the surface of the unit hypersphere in $$\mathbb{R}^d$$.
 
 ... More to come
