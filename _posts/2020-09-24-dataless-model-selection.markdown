@@ -24,7 +24,11 @@ with quantitative evidence demonstrating the efficacy of their approach.
 Before going into details I'll discuss a few preliminaries that I had to dig into before being able
 to follow this work.
 
-#### 2.1. Mutual-coherence
+#### 2.1. Dictionary Learning
+
+TODO
+
+#### 2.2. Mutual-coherence
 
 Mutual-coherence of a dictionary $$D \in \mathbb{R}^{d \times k}$$ is defined as follows
 
@@ -51,7 +55,7 @@ According to the authors of the paper, if atoms in a dictionary are close to eac
 same or similar data to be far apart (according to some distance metric). 
 
 
-#### 2.2. Deep Component Analysis
+#### 2.3. Deep Component Analysis
 
 The authors have shown in their previous work
 
