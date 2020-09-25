@@ -49,11 +49,10 @@ In general, we often have dictionaries that are over-complete, i.e. $$k > d$$. I
 and instead may try to define a dictionary $$D$$ for which $$M$$ is minimal.
 
 - This can be interpreted as a way of ensuring that the dictionary contains as little redundancy as possible. Another way
-to think about this is that the atoms (i.e. columns of $$D$$) are as evenly distributed as possible on the surface of the unit hypersphere in $$\mathbb{R}^d$$.
-According to the authors of the paper, if atoms in a dictionary are close to eachother then there may be
-"instabilities" in the representation. By this I assume they mean it's more likely for two sparse representations of the
-same or similar data to be far apart (according to some distance metric). 
-
+to think about this is that the unit normalized atoms and their negatives (i.e. the columns of $$D$$ and $$-D$$) are as evenly
+distributed as possible on the surface of the unit hypersphere in $$\mathbb{R}^d$$. According to the authors of the paper,
+if atoms in a dictionary are close to each other then there may be "instabilities" in the representation. By this I assume
+they mean it's more likely for two sparse representations of the same or similar data to be far apart according to some distance metric. 
 
 #### 2.3. Deep Component Analysis
 
