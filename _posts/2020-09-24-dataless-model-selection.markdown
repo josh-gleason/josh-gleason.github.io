@@ -2,7 +2,7 @@
 layout: post
 mathjax: true
 comments: true
-title:  "Overview of Dataless Model Selection with the Deep Frame Potential"
+title:  "IN PROGRESS Overview of Dataless Model Selection with the Deep Frame Potential"
 date:   2020-09-24 20:00:00 -0400
 categories: jekyll update
 ---
