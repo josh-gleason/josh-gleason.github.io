@@ -66,6 +66,6 @@ $$
 
 Here, $$\mathbf{w}_*$$ are the activations of each layer and $$\Phi_*$$ is a penalty function. The authors show that
 a particular form of $$\Phi_*$$ and particular initialization of variables makes it so a single step of ADMM is identical to
-$$\mathbf{f}^{DNN}$$. Further, they extend this idea, taking multiple steps and imposing additional constraints that would difficult
-or potentially impossible in traditional DCNNs. For example, they investigate imposing a prior on depth estimation where a subset of depths
-are already known. The impressive results of this are shown in Figure 3 of their paper.
+$$\mathbf{f}^{DNN}$$. Further, they extend this idea, taking multiple steps and imposing additional constraints that would
+be difficult, or maybe impossible, in traditional DCNNs. For example, they investigate imposing a prior on depth estimation
+where a subset of depths are already known. The impressive results of this are shown in Figure 3 of their paper.
