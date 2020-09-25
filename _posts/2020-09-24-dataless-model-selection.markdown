@@ -10,7 +10,7 @@ Today I'll be giving my own overview and interpretation of the following publica
 
  - [Murdock, Calvin, and Simon Lucey. "Dataless Model Selection with the Deep Frame Potential." Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition. 2020.](https://openaccess.thecvf.com/content_CVPR_2020/html/Murdock_Dataless_Model_Selection_With_the_Deep_Frame_Potential_CVPR_2020_paper.html)
 
-*Disclaimer: This post is a representation my interpretation and opinions of the aforementioned work and should not be taken, in any way, to represent the opinions or views of the original authors.* 
+*Disclaimer: This post is a representation of my interpretation and opinions of the aforementioned work and should not be taken, in any way, to represent the opinions or views of the original authors.* 
 
 ### Overview
 
@@ -40,3 +40,5 @@ In general, we often have dictionaries that are over-complete, i.e. $$k > d$$. I
 and instead may try to define a dictionary $$D$$ for which $$M$$ is minimal. This can be interpreted as a way of ensuring
 that the dictionary contains as little redundancy as possible. Another way to think about this is that the atoms
 (i.e. columns of $$D$$) are as evenly distributed as possible on the surface of a unique hypersphere in $$\mathbb{R}^d$$.
+
+... More to come
