@@ -12,14 +12,19 @@ Today I'll be giving my own overview and interpretation of the following publica
 
 *Disclaimer: This post is a representation of my interpretation and opinions of the aforementioned work and should not be taken, in any way, to represent the opinions or views of the original authors.* 
 
-### Overview
+### 1. Overview
 
 This paper describes a process of quantifying the performance of a network without training or validation data. To this end
 the authors introduce the "deep frame potential" measure. By utilizing previously researched connections between deep
 learning and sparse representations, they measure the coherence of an architecture and provide theoretical arguments along
 with quantitative evidence demonstrating the efficacy of their approach.
 
-#### Mutual-coherence
+### 2. Preliminary
+
+Before going into details I'll discuss a few preliminaries that I had to dig into before being able
+to follow this work.
+
+#### 2.1. Mutual-coherence
 
 Mutual-coherence of a dictionary $$D \in \mathbb{R}^{d \times k}$$ is defined as follows
 
@@ -46,9 +51,9 @@ According to the authors of the paper, if atoms in a dictionary are close to eac
 same or similar data to be far apart (according to some distance metric). 
 
 
-#### Context
+#### 2.2. Deep Component Analysis
 
-The authors have shown their previous work:
+The authors have shown in their previous work
 
 - [Murdock, Calvin, MingFang Chang, and Simon Lucey. "Deep component analysis via alternating direction neural networks." Proceedings of the European Conference on Computer Vision (ECCV). 2018.](https://openaccess.thecvf.com/content_ECCV_2018/html/Calvin_Murdock_Deep_Component_Analysis_ECCV_2018_paper.html)
 
