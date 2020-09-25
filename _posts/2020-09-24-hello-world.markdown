@@ -18,8 +18,8 @@ $$ \begin{align}
 \end{align} $$
 
 Here's some code markdown
+
 ```python
 import torch
-
 print(torch.__version__)
 ```
