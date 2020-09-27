@@ -39,7 +39,7 @@ coefficients of a linear combination of dictionary atoms that can be used to rec
 \end{equation}
 
 Of key importance is that a collection of sparse codes are only useful if they all use the same dictionary.
-In other words, we want a dictionary that allows us to accurately represent all the elements in a set of data vectors
+In other words, we want a single dictionary that allows us to accurately represent all the elements in a set of data vectors
 using sparse codes. Broadly speaking, there are two ways to define such a dictionary (1) use a pre-defined dictionary,
 or (2) define a dictionary specifically tailored to the data. Tailoring may involve machine learning or hand-crafting,
 or a combination of both. For the purposes of this overview it is not necessary to understand the details of such
