@@ -43,7 +43,7 @@ In other words, we want a dictionary that allows us to accurately represent all 
 using sparse codes. Broadly speaking, there are two ways to define such a dictionary (1) use a pre-defined dictionary,
 or (2) define a dictionary specifically tailored to the data. Tailoring may involve machine learning or hand-crafting,
 or a combination of both. For the purposes of this overview it is not necessary to understand the details of such
-methods so I won't be going into further detail on them.
+methods, so I won't be going into further detail on them.
 
 On a related note, one issue with sparse coding is that even finding an optimal sparse code given a dictionary is generally
 a combinatorial NP-hard problem. This is because finding sparse representations involves minimizing with respect to
