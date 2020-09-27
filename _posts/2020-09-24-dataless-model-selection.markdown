@@ -10,6 +10,8 @@ In this post I'll be giving my own overview and interpretation of the following 
 
  - [Murdock, Calvin, and Simon Lucey. "Dataless Model Selection with the Deep Frame Potential." Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition. 2020.](https://openaccess.thecvf.com/content_CVPR_2020/html/Murdock_Dataless_Model_Selection_With_the_Deep_Frame_Potential_CVPR_2020_paper.html)
 
+:)
+
 *Disclaimer: This post is a representation of my interpretation and opinions of the aforementioned work and should not be taken, in any way, to represent the opinions or views of the original authors.* 
 
 ### 1. Overview
