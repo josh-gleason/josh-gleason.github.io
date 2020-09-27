@@ -24,9 +24,19 @@ with quantitative evidence demonstrating the efficacy of their approach.
 Before going into details I'll discuss a few preliminaries that I had to dig into before being able
 to follow this work.
 
-#### 2.1. Dictionary Learning
+#### 2.1. Sparse coding and dictionary learning
 
-TODO
+In sparse coding we are interested in finding an approximate representation of a vector $$\mathbf{x} \in \mathbb{R}^d$$
+using what is known as a *sparse code*. A sparse code $$\mathbf{w} \in \mathbb{R}^k$$ is a vector defined with respect
+to a *dictionary*, which is a collection of $$d$$-dimensional vectors called *atoms*. A dictionary is often
+represented as a matrix $$\mathbf{B} \in \mathbb{R}^{d \times k}$$ where the columns of $$\mathbf{B}$$ are the atoms of
+the dictionary. Using the dictionary we want the sparse code $$\mathbf{w}$$ to be both sparse, meaning that most of
+its elements are zero (i.e. $$\|\mathbf{w}\|_0^0 \ll k$$), and defined such that the values of $$\mathbf{w}$$ are
+coefficients of a linear combination of dictionary atoms that can be used to recover $$\mathbf{x}$$ via  
+ 
+\begin{equation}
+\mathbf{x} \approx \sum_{i=1}^{k}{w_i \mathbf{b}_i} = \mathbf{B}\mathbf{w}.
+\end{equation}
 
 #### 2.2. Mutual-coherence
 
