@@ -48,7 +48,7 @@ so I won't be discussing them here.
 On a related note, one issue with sparse coding is that even finding an optimal sparse code given a dictionary is generally
 a combinatorial NP-hard problem. This is because finding sparse representations involves minimizing with respect to
 the number of non-zero elements in the representation. In practice, one or more relaxation techniques or greedy methods are
-used to find a produce suitable sparse code in a reasonable amount of time. Many of these methods can be shown to produce
+used to find a suitable sparse code in a reasonable amount of time. Many of these methods can be shown to produce
 optimal codes under certain special conditions, though in application we often use these methods without such guarantees.
 
 #### 2.2. Mutual-coherence
