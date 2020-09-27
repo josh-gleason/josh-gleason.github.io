@@ -6,7 +6,7 @@ title:  "IN PROGRESS Overview of Dataless Model Selection with the Deep Frame Po
 date:   2020-09-24 20:00:00 -0400
 categories: jekyll update
 ---
-Today I'll be giving my own overview and interpretation of the following publication: 
+In this post I'll be giving my own overview and interpretation of the following publication: 
 
  - [Murdock, Calvin, and Simon Lucey. "Dataless Model Selection with the Deep Frame Potential." Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition. 2020.](https://openaccess.thecvf.com/content_CVPR_2020/html/Murdock_Dataless_Model_Selection_With_the_Deep_Frame_Potential_CVPR_2020_paper.html)
 
@@ -31,8 +31,8 @@ using what is known as a *sparse code*. A sparse code $$\mathbf{w} \in \mathbb{R
 to a *dictionary*, which is a collection of $$d$$-dimensional vectors called *atoms*. A dictionary is often
 represented as a matrix $$\mathbf{B} \in \mathbb{R}^{d \times k}$$ where the columns of $$\mathbf{B}$$ are the atoms of
 the dictionary. Using the dictionary we want the sparse code $$\mathbf{w}$$ to be both sparse, meaning that most of
-its elements are zero (i.e. $$\|\mathbf{w}\|_0^0 \ll k$$), and defined such that the values of $$\mathbf{w}$$ are
-coefficients of a linear combination of dictionary atoms that can be used to recover $$\mathbf{x}$$ via  
+its elements are zero (i.e. $$\|\mathbf{w}\|_0 \ll k$$), and defined such that the values of $$\mathbf{w}$$ are
+coefficients of a linear combination of dictionary atoms that can be used to recover $$\mathbf{x}$$ via 
  
 \begin{equation}
 \mathbf{x} \approx \sum_{i=1}^{k}{w_i \mathbf{b}_i} = \mathbf{B}\mathbf{w}.
@@ -40,26 +40,27 @@ coefficients of a linear combination of dictionary atoms that can be used to rec
 
 #### 2.2. Mutual-coherence
 
-Mutual-coherence of a dictionary $$D \in \mathbb{R}^{d \times k}$$ is defined as follows
+Mutual-coherence of a dictionary $$\mathbf{B} \in \mathbb{R}^{d \times k}$$ is defined as follows
 
-Let $$\hat{d}_i \triangleq \frac{1}{d_i^T d_i} d_i$$ where $$d_i$$ is the $$i^{th}$$ column of $$D$$. Then mutual-coherence of
-$$D$$ is defined as
+Let $$\hat{\mathbf{b}}_i \triangleq \frac{1}{\left\|\mathbf{b}_i\right\|_2} \mathbf{b}_i$$ be the unit normalized
+$$i^{th}$$ column (atom) of $$\mathbf{B}$$. Then mutual-coherence of $$\mathbf{B}$$ is defined as
 
 $$
-M(D) \triangleq \max_{1 \leq i \neq j \leq k} \left| \hat{d}_i^T \hat{d}_j \right|
+\mu(\mathbf{B}) \triangleq \max_{1 \leq i \neq j \leq k} \left| \hat{\mathbf{b}}_i^T \hat{\mathbf{b}}_j \right|
 $$
 
 *Personal observations about mutual-coherence:* Since I'm not very familiar with dictionary learning, I'll put my interpretation
 of mutual-coherence here:
 
-- If $$M = 0$$ then the columns of $$D$$ form an orthogonal basis. This is ideal for dictionary learning since it
+- If $$\mu = 0$$ then the atoms of $$\mathbf{B}$$ form an orthogonal basis. This is ideal for dictionary learning since it
 ensures the dictionary does not contain redundant information and also ensures that any representation is unique. By
-this I mean that for some representation $$r$$, there does not exist any $$\hat{r} \neq r$$ for which $$Dr = D\hat{r}$$.
-In general, we often have dictionaries that are over-complete, i.e. $$k > d$$. In such cases we cannot achieve $$M = 0$$
-and instead may try to define a dictionary $$D$$ for which $$M$$ is minimal.
+this I mean that for some representation $$\mathbf{w}$$, there does not exist any representation $$\mathbf{u} \neq \mathbf{w}$$
+for which $$\mathbf{Bw} = \mathbf{Bu}$$.
 
-- This can be interpreted as a way of ensuring that the dictionary contains as little redundancy as possible. Another way
-to think about this is that the unit normalized atoms and their negatives (i.e. the columns of $$D$$ and $$-D$$) are as evenly
+- In general, we often have dictionaries that are over-complete, i.e. $$k > d$$.
+In such cases we cannot achieve $$\mu = 0$$ and instead may try to define a dictionary $$\mathbf{B}$$ for which $$\mu$$ is minimal. 
+This can be interpreted as a way of ensuring that the dictionary contains as little redundancy as possible. Another way
+to think about this is that the unit normalized atoms and their negatives (i.e. the columns of $$\mathbf{B}$$ and $$-\mathbf{B}$$) are as evenly
 distributed as possible on the surface of the unit hypersphere in $$\mathbb{R}^d$$. According to the authors of the paper,
 if atoms in a dictionary are close to each other then there may be "instabilities" in the representation. By this I assume
 they mean it's more likely for two sparse representations of the same or similar data to be far apart according to some distance metric. 
