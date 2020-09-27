@@ -39,17 +39,17 @@ coefficients of a linear combination of dictionary atoms that can be used to rec
 \end{equation}
 
 Of key importance is that a collection of sparse codes are only useful if they all use the same dictionary.
-In other words, we want a dictionary that allows us to accurately represent all the data in a set of data vectors using
-sparse codes. Broadly there are two ways to define such a dictionary (1) use a pre-defined dictionary, or (2) define a
-dictionary specifically tailored to our set of data vectors. Tailoring may involve machine learning or hand-crafting, or
-a combination of both. For the purposes of this overview it is not necessary to understand the details of such methods
-so I won't be discussing them here.
+In other words, we want a dictionary that allows us to accurately represent all the elements in a set of data vectors
+using sparse codes. Broadly speaking, there are two ways to define such a dictionary (1) use a pre-defined dictionary,
+or (2) define a dictionary specifically tailored to the data. Tailoring may involve machine learning or hand-crafting,
+or a combination of both. For the purposes of this overview it is not necessary to understand the details of such
+methods so I won't be going into further detail on them.
 
 On a related note, one issue with sparse coding is that even finding an optimal sparse code given a dictionary is generally
 a combinatorial NP-hard problem. This is because finding sparse representations involves minimizing with respect to
-the number of non-zero elements in the representation. In practice, one or more relaxation techniques or greedy methods are
-used to find a suitable sparse code in a reasonable amount of time. Many of these methods can be shown to produce
-optimal codes under certain special conditions, though in practice they are often used without such guarantees.
+the number of non-zero elements in the representation. In practice, one or more relaxation techniques or greedy methods
+are used to find suitable sparse codes in a reasonable amount of time. A number of such methods can be shown to produce
+optimal solutions under certain special conditions, though in practice they are often used without such guarantees.
 
 #### 2.2. Mutual-coherence
 
