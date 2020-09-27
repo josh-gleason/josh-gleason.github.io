@@ -26,7 +26,7 @@ to follow this work.
 
 #### 2.1. Sparse coding and dictionary learning
 
-In sparse coding we are interested in finding an approximate representation of a vector $$\mathbf{x} \in \mathbb{R}^d$$
+In sparse coding we are interested in finding an approximate representation of a data vector $$\mathbf{x} \in \mathbb{R}^d$$
 using what is known as a *sparse code*. A sparse code $$\mathbf{w} \in \mathbb{R}^k$$ is a vector defined with respect
 to a *dictionary*, which is a collection of $$d$$-dimensional vectors called *atoms*. A dictionary is often
 represented as a matrix $$\mathbf{B} \in \mathbb{R}^{d \times k}$$ where the columns of $$\mathbf{B}$$ are the atoms of
@@ -38,28 +38,40 @@ coefficients of a linear combination of dictionary atoms that can be used to rec
 \mathbf{x} \approx \sum_{i=1}^{k}{w_i \mathbf{b}_i} = \mathbf{B}\mathbf{w}.
 \end{equation}
 
+Of key importance is that a collection of sparse codes are only useful if they all use the same dictionary.
+In other words, we want a dictionary that allows us to accurately represent all the data in a set of data vectors using
+sparse codes. Broadly there are two ways to define such a dictionary (1) use a pre-defined dictionary, or (2) define a
+dictionary specifically tailored to our set of data vectors. Tailoring may involve machine learning or hand-crafting, or
+a combination of both. For the purposes of this overview it is not necessary to understand the details of such methods
+so I won't be discussing them here.
+
+On a related note, one issue with sparse coding is that even finding an optimal sparse code given a dictionary is generally
+a combinatorial NP-hard problem. This is because finding sparse representations involves minimizing with respect to
+the number of non-zero elements in the representation. In practice, one or more relaxation techniques or greedy methods are
+used to find a produce suitable sparse code in a reasonable amount of time. Many of these methods can be shown to produce
+optimal codes under certain special conditions, though in application we often use these methods without such guarantees.
+
 #### 2.2. Mutual-coherence
 
-Mutual-coherence of a dictionary $$\mathbf{B} \in \mathbb{R}^{d \times k}$$ is defined as follows
-
-Let $$\hat{\mathbf{b}}_i \triangleq \frac{1}{\left\|\mathbf{b}_i\right\|_2} \mathbf{b}_i$$ be the unit normalized
-$$i^{th}$$ column (atom) of $$\mathbf{B}$$. Then mutual-coherence of $$\mathbf{B}$$ is defined as
+Given dictionary $$\mathbf{B} \in \mathbb{R}^{d \times k}$$ let
+$$\tilde{\mathbf{b}}_i \triangleq \frac{1}{\left\|\mathbf{b}_i\right\|_2} \mathbf{b}_i$$ be the unit normalized
+$$i^{th}$$ column (atom) of $$\mathbf{B}$$. The *mutual-coherence* of $$\mathbf{B}$$ is defined as
 
 $$
-\mu(\mathbf{B}) \triangleq \max_{1 \leq i \neq j \leq k} \left| \hat{\mathbf{b}}_i^T \hat{\mathbf{b}}_j \right|
+\mu(\mathbf{B}) \triangleq \max_{1 \leq i \neq j \leq k} \left| \tilde{\mathbf{b}}_i^T \tilde{\mathbf{b}}_j \right|
 $$
 
-*Personal observations about mutual-coherence:* Since I'm not very familiar with dictionary learning, I'll put my interpretation
+**Personal observations about mutual-coherence:** Since I'm not very familiar with dictionary learning, I'll put my interpretation
 of mutual-coherence here:
 
 - If $$\mu = 0$$ then the atoms of $$\mathbf{B}$$ form an orthogonal basis. This is ideal for dictionary learning since it
 ensures the dictionary does not contain redundant information and also ensures that any representation is unique. By
 this I mean that for some representation $$\mathbf{w}$$, there does not exist any representation $$\mathbf{u} \neq \mathbf{w}$$
-for which $$\mathbf{Bw} = \mathbf{Bu}$$.
+for which $$\mathbf{Bu} = \mathbf{Bw}$$.
 
-- In general, we often have dictionaries that are over-complete, i.e. $$k > d$$.
+- In general, we often have dictionaries that are *over-complete*, i.e. $$k > d$$.
 In such cases we cannot achieve $$\mu = 0$$ and instead may try to define a dictionary $$\mathbf{B}$$ for which $$\mu$$ is minimal. 
-This can be interpreted as a way of ensuring that the dictionary contains as little redundancy as possible. Another way
+Minimizing $$\mu$$ can be interpreted as a way of ensuring that the dictionary contains as little redundancy as possible. Another way
 to think about this is that the unit normalized atoms and their negatives (i.e. the columns of $$\mathbf{B}$$ and $$-\mathbf{B}$$) are as evenly
 distributed as possible on the surface of the unit hypersphere in $$\mathbb{R}^d$$. According to the authors of the paper,
 if atoms in a dictionary are close to each other then there may be "instabilities" in the representation. By this I assume
@@ -80,11 +92,12 @@ $$
 can be interpreted as a single step in the Alternating Direction Method of Multipliers (ADMM) applied to the following optimization problem:
 
 $$
-\mathbf{f}^*(\mathbf{x}) = \underset{\left\{\mathbf{w_j}\right\}}{\text{arg min}}{\sum_{j=1}^{l} \frac{1}{2} || \mathbf{w}_{j-1} - \mathbf{B}_j \mathbf{w}_j||^2_2 + \Phi_j(\mathbf{w}_j)}~~~\text{s.t.}~\mathbf{w}_0 = \mathbf{x}
+\mathbf{f}^*(\mathbf{x}) = \underset{\left\{\mathbf{w_j}\right\}}{\text{arg min}}{\sum_{j=1}^{l} \frac{1}{2} || \mathbf{w}_{j-1} - \mathbf{B}_j \mathbf{w}_j||^2_2 + \Phi_j(\mathbf{w}_j)}~~~\text{s.t.}~\mathbf{w}_0 = \mathbf{x}.
 $$
 
 Here, $$\mathbf{w}_*$$ are the activations of each layer and $$\Phi_*$$ is a penalty function. The authors show that
-a particular form of $$\Phi_*$$ and particular initialization of variables makes it so a single step of ADMM is identical to
-$$\mathbf{f}^{DNN}$$. Further, they extend this idea, taking multiple steps and imposing additional constraints that would
-be difficult, or maybe impossible, in traditional DCNNs. For example, they investigate imposing a prior on depth estimation
-where a subset of depths are already known. The impressive results of this are shown in Figure 3 of their paper.
+a particular form of $$\Phi_*$$ and particular initialization of variables makes it so a single step of ADMM is identical
+to computing $$\mathbf{f}^{DNN}$$. Further, they extend this idea, taking multiple steps and imposing additional constraints
+that would be difficult, or maybe impossible, in traditional DCNNs. For example, they investigate the problem of estimating
+depth from a single image given a sparse set of accurate depth measurements. They impose the constraints within the penalty
+functions and are able to achieve impressive results, shown in Figure 3 of their paper.
